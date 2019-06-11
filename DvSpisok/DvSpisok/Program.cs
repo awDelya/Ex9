@@ -54,7 +54,7 @@ namespace DvSpisok
 
         static void ShowListTwo()
         {
-            Console.WriteLine("");
+            Console.WriteLine();
             if (beg == null)
             {
                 Color.Print("Список пуст!\n", ConsoleColor.Red);
@@ -64,7 +64,7 @@ namespace DvSpisok
             Color.Print("Исходный список:\n", ConsoleColor.Yellow);
             while (temp != null)
             {
-                Console.Write(temp);
+                Color.Print(Convert.ToString(temp), ConsoleColor.Cyan);
                 temp = temp.next;//переход к следующему элементу
             }
         }
@@ -104,9 +104,7 @@ namespace DvSpisok
         {
             Color.Print("\nВведите количество элементов: ", ConsoleColor.Yellow);
             size = Number.Check(1, int.MaxValue);
-            Color.Print("\nВыберите способ заполнения: \n\n ", ConsoleColor.Yellow);
-            Color.Print("1) Ручной ввод \n 2) Случайный \n Номер:  ");
-            HowCreate = Number.Check(1, 2);
+            HowCreate = Text.HowAdd();
             beg = MakeListTwo();
         }
 
@@ -131,7 +129,12 @@ namespace DvSpisok
         static void Main()
         {
             Color.Print("\tВыберите пункт: \n", ConsoleColor.Yellow);
-            Color.Print(" 1) Создать список \n 2) Печать списка \n 3) Удалить элемент по номеру \n 4) Найти элемент по номеру \n 5) Выход \n Номер: ");
+            Color.Print(" 1) Создать список " +
+                        "\n 2) Печать списка " +
+                        "\n 3) Удалить элемент по номеру " +
+                        "\n 4) Найти элемент по номеру " +
+                        "\n 5) Выход", ConsoleColor.Cyan);
+            Color.Print("\n\n Цифра: ", ConsoleColor.Black, ConsoleColor.White);
             zadacha = Number.Check(1, 5);
             switch (zadacha)
             {
