@@ -100,10 +100,47 @@ namespace DvSpisok
             Color.Print("\n Удалено!", ConsoleColor.Cyan);
             return beg;
         }
+        public static void Create()
+        {
+            Color.Print("\nВведите количество элементов: ", ConsoleColor.Yellow);
+            size = Number.Check(1, int.MaxValue);
+            Color.Print("\nВыберите способ заполнения: \n\n ", ConsoleColor.Yellow);
+            Color.Print("1) Ручной ввод \n 2) Случайный \n Номер:  ");
+            HowCreate = Number.Check(1, 2);
+            beg = MakeListTwo();
+        }
 
+        public static void Finde()
+        {
+            if (beg == null)//список пустой
+            {
+                Color.Print(" Список пуст!\n ", ConsoleColor.Red);
+                return;
+            }
+            Color.Print(" Номер искомого элемента: ", ConsoleColor.Green);
+            int number = Number.Check(1, int.MaxValue) - 1;
+            PointTwo temp = beg;
+            for (int i = 0; i < number && temp != null; i++) temp = temp.next;//перебор элементов до нужного номера
+            if (temp == null)
+            {
+                Color.Print("Элемент не найден.\n", ConsoleColor.Red);
+                return;
+            }
+            Color.Print("\n Элемент: " + temp, ConsoleColor.Green);
+        }
         static void Main()
         {
-
+            Color.Print("\tВыберите пункт: \n", ConsoleColor.Yellow);
+            Color.Print(" 1) Создать список \n 2) Печать списка \n 3) Удалить элемент по номеру \n 4) Найти элемент по номеру \n 5) Выход \n Номер: ");
+            zadacha = Number.Check(1, 5);
+            switch (zadacha)
+            {
+                case 1: Create(); Text.GoBackMenu(); Main(); break;
+                case 2: ShowListTwo(); Text.GoBackMenu(); Main(); break;
+                case 3: beg = Delete(); Text.GoBackMenu(); Main(); break;
+                case 4: Finde(); Text.GoBackMenu(); Main(); break;
+                case 5: break;
+            }
         }
     }
 }
